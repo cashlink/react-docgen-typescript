@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepare": "npm run tsc",
+    "prepare": "npm run tsc && npm run prepublishOnly",
     "precommit": "lint-staged",
     "tsc": "tsc",
     "prepublishOnly": "tsc -d",
