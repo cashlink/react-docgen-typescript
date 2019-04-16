@@ -473,7 +473,7 @@ export class Parser {
       );
       
       // without this, type e.g. Color = "blue" | "green" will not be expanded
-      propType.aliasSymbol = null;
+      propType.aliasSymbol = undefined;
 
       const propTypeString = this.checker.typeToString(propType);
 
