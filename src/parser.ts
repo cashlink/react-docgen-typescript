@@ -464,6 +464,8 @@ export class Parser {
     const result: Props = {};
 
     propertiesOfProps.forEach(prop => {
+      const jsDocComment = this.findDocComment(prop);
+      
       const propName = prop.getName();
 
       // Find type of prop by looking in context of the props object itself.
@@ -473,14 +475,15 @@ export class Parser {
       );
       
       // without this, type e.g. Color = "blue" | "green" will not be expanded
-      propType.aliasSymbol = undefined;
-
+      // expanding of type with @expandType true in the comment of a prop possible
+      if(jsDocComment.tags.expandType) {
+        propType.aliasSymbol = undefined;
+      }
+      
       const propTypeString = this.checker.typeToString(propType);
 
       // tslint:disable-next-line:no-bitwise
       const isOptional = (prop.getFlags() & ts.SymbolFlags.Optional) !== 0;
-
-      const jsDocComment = this.findDocComment(prop);
 
       let defaultValue = null;
 
