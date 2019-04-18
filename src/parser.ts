@@ -558,7 +558,7 @@ export class Parser {
         ? currentValue + '\n' + trimmedText
         : trimmedText;
 
-      if (tag.name !== 'default') {
+      if (tag.name !== 'default' && tag.name !== 'expandType') {
         tagComments.push(formatTag(tag));
       }
     });
